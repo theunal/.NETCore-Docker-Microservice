@@ -1,0 +1,19 @@
+﻿syntax = "proto3";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "DenemeService.Deneme.Proto";
+
+package deneme;
+
+service Deneme {
+	rpc GetDeneme (google.protobuf.Empty) returns (GetDenemeResponse);
+}
+
+message Empty {
+
+}
+
+message GetDenemeResponse {
+    google.protobuf.StringValue Data = 1;
+}

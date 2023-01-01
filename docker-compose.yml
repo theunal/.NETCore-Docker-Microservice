@@ -1,0 +1,56 @@
+version: '3.4'
+networks:
+  deneme:
+    driver: bridge  
+
+services:
+  gateway:
+    image: gateway
+    build:
+      context: .
+      dockerfile: Gateway/WebApi/Dockerfile
+    ports:
+      - 7000:7000
+    expose:
+      - 7000
+    networks:
+      - deneme
+    environment:
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=mypass123
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    volumes:
+      - ~/.aspnet/https:/https:ro
+
+  service1:
+    image: service1
+    build:
+      context: .
+      dockerfile: Service1/WebApi/Dockerfile
+    ports:
+      - 7001:7001
+    expose:
+      - 7001
+    networks:
+      - deneme
+    environment:
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=mypass123
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    volumes:
+      - ~/.aspnet/https:/https:ro
+
+  service2:
+    image: service2
+    build:
+      context: .
+      dockerfile: Service2/WebApi/Dockerfile
+    ports:
+      - 7002:7002
+    expose:
+      - 7002
+    networks:
+      - deneme
+    environment:
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=mypass123
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    volumes:
+      - ~/.aspnet/https:/https:ro
