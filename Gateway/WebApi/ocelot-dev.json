@@ -23,8 +23,5 @@
       },
       "DangerousAcceptAnyServerCertificateValidator": true
     }
-  ],
-  "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:7000"
-  }
+  ]
 }
